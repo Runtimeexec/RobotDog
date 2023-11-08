@@ -25,6 +25,10 @@ from bosdyn.client.manipulation_api_client import ManipulationApiClient
 from bosdyn.client.robot_command import RobotCommandClient, blocking_stand
 from bosdyn.client.robot_state import RobotStateClient
 
+import torch
+import torch.nn as nn
+import torch.optim as optim
+
 g_image_click = None
 g_image_display = None
 
@@ -121,6 +125,18 @@ def arm_object_grasp(config):
             f'Picking object at image location ({g_image_click[0]}, {g_image_click[1]})')
         robot.logger.info(f'Picking object at image location (%s, %s)', g_image_click[0],
                           g_image_click[1])
+        
+
+        # load the model from disk
+        # loaded_model = pickle.load(open(model_filename, 'rb'))
+        # model = Net()
+        # model.load_state_dict(torch.load(".\\mortar_shell_model.pt"))
+        # model.eval()
+
+
+
+
+
 
         pick_vec = geometry_pb2.Vec2(x=g_image_click[0], y=g_image_click[1])
 
